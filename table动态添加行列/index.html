@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<title></title>
+		
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<div class="table-box">
+			<div class="container">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th><span>时间</span></th>
+							<th>星期一</th>
+							<th>星期二</th>
+							<th>星期三</th>
+							<th>星期四</th>
+							<th>星期五</th>
+						</tr>
+					</thead>
+					<tbody class="table_body">
+						<tr>
+							<td>9</td>
+							<td>人生表一</td>
+							<td>表一</td>
+							<td>表一</td>
+							<td>生表一</td>
+							<td>人生表</td>
+						</tr>
+						<tr>
+							<td>10</td>
+							<td>人生表一</td>
+							<td>生表一</td>
+							<td>人生表一</td>
+							<td></td>
+							<td>表一</td>
+						</tr>
+						<tr>
+							<td>12</td>
+							<td>人生表一</td>
+							<td>人生表一</td>
+							<td></td>
+							<td>人生表一</td>
+							<td>人生表一</td>
+						</tr>
+						<tr>
+							<td>16</td>
+							<td>人生表一</td>
+							<td>人生表一</td>
+							<td>人生表一</td>
+							<td>人生表一</td>
+							<td>人生表一</td>
+						</tr>
+						<tr>
+							<td>18</td>
+							<td>单元表</td>
+							<td>单元表表</td>
+							<td>单元表</td>
+							<td>单元表</td>
+							<td>单元表</td>
+						</tr>
+						<tr>
+							<td>19</td>
+							<td>人生表一</td>
+							<td>生表一</td>
+							<td></td>
+							<td></td>
+							<td>表一</td>
+						</tr>
+					</tbody>
+				</table>
+				<!--button-->
+				<div class="btn-group" role="group" aria-label="">
+				  <button type="button" class="btn btn-default" id="addrowbtn" data-toggle="modal" data-target="#rowModal">添加行</button>
+				</div>
+				<div class="btn-group" role="group" aria-label="">
+				  <button type="button" class="btn btn-default" id="addcolbtn" data-toggle="modal" data-target="#colModal">添加列</button>
+				</div>
+				<!--addRow模态框-->
+				<div class="modal fade" id="rowModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="exampleModalLabel">添加新行</h4>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label for="recipient-time" class="control-label">填写行编号:</label>
+										<input type="text" class="form-control" id="recipient-time">
+									</div>
+									<div class="form-group">
+										<label for="message-text" class="control-label">描述（可选）:</label>
+										<textarea class="form-control" id="message-text"></textarea>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal" id="confirmrow">确认</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--addCol模态框-->
+				<div class="modal fade" id="colModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="exampleModalLabel">添加新列</h4>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label for="recipient-date" class="control-label">填写列头信息:</label>
+										<input type="text" class="form-control" id="recipient-date">
+									</div>
+									<div class="form-group">
+										<label for="message-text" class="control-label">描述（可选）:</label>
+										<textarea class="form-control" id="message-text"></textarea>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal" id="confirmcol">确认</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
+		<script type="text/javascript" src="js/jquery.table.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.js" ></script>
+		<script>
+			$(function(){
+				var $table, rowcol, row_num, col_num, allcols;
+				$table = $(".table");
+				rowcol = $table.getrowcol(); //$表格行列
+				row_num = rowcol.rows;
+				col_num = rowcol.cols;
+				
+
+				$("#confirmrow").on("click",function(){
+					var trlength = $(".table tr:first").find("th").length;
+					var newtime = $("#recipient-time").val();
+					allcols = curCols(".table",0);
+					allcols.shift();  //除第一项的所有时间列
+					$(".table").addrow($table,allcols,trlength,newtime);  //$添加行
+				});
+				
+				$("#confirmcol").on("click",function(){    //$添加列 
+					var newdate = $("#recipient-date").val();
+					$(".table").addcol($table,row_num,newdate);
+				});
+				
+				//时间列
+				function curCols(selector,curCol){
+					var allcol = [],
+						selector = selector || "",
+						curIndex = curIndex || "";
+					$(selector + " tr").each(function(index){
+						var e_row = $(this).children().eq(curIndex);
+						allcol.push(e_row);
+					});
+					
+					allcol = allcol.length > 0 ? allcol : "";  //全列数组
+					return allcol;	
+				}
+				
+			})
+		</script>
+	</body>
+</html>

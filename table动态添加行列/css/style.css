@@ -1,0 +1,23 @@
+body{
+	width: 100%;
+}
+.table-box{
+	margin: 50px auto;
+}
+.table-box .container{
+	width: 50%;
+}
+
+.tr-active{
+	background-color: #cee2f7;
+}
+.td-active{  /*暂时没用*/
+	background-color: #ddd;
+}
+.editinput{
+	width: 60px;
+}
+.table td.input{}
+.clickcol{
+	background-color: #cee2f7;
+}
