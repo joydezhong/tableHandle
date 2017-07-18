@@ -11,13 +11,13 @@ body{
 .tr-active{
 	background-color: #cee2f7;
 }
-.td-active{  /*暂时没用*/
-	background-color: #ddd;
+.td-hover{
+	background-color: #e5f0fb;
 }
 .editinput{
 	width: 60px;
 }
 .table td.input{}
-.clickcol{
+.click{
 	background-color: #cee2f7;
 }
